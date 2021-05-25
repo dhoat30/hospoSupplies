@@ -1,0 +1,10 @@
+2021-05-25T05:05:21+00:00 CRITICAL Allowed memory size of 268435456 bytes exhausted (tried to allocate 62713729 bytes) in /Applications/MAMP/htdocs/hospo/wp-content/plugins/wp-smart-image-resize-pro/src/vendor/intervention/image/src/Intervention/Image/Gd/Driver.php on line 83
+
+2021-05-25T05:06:40+00:00 CRITICAL Allowed memory size of 268435456 bytes exhausted (tried to allocate 62713729 bytes) in /Applications/MAMP/htdocs/hospo/wp-content/plugins/wp-smart-image-resize-pro/src/vendor/intervention/image/src/Intervention/Image/Gd/Driver.php on line 44
+
+2021-05-25T05:25:49+00:00 CRITICAL syntax error, unexpected '}', expecting ';' or ',' in /Applications/MAMP/htdocs/hospo/wp-content/themes/webduel-theme/inc/woocommerce.php on line 8
+
+2021-05-25T05:25:53+00:00 CRITICAL Cannot redeclare add_filter() (previously declared in /Applications/MAMP/htdocs/hospo/wp-includes/plugin.php:114) in /Applications/MAMP/htdocs/hospo/wp-content/themes/webduel-theme/inc/woocommerce.php on line 6
+
+2021-05-25T05:25:58+00:00 CRITICAL Cannot redeclare add_filter() (previously declared in /Applications/MAMP/htdocs/hospo/wp-includes/plugin.php:114) in /Applications/MAMP/htdocs/hospo/wp-content/themes/webduel-theme/inc/woocommerce.php on line 6
+
