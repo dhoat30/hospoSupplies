@@ -3,14 +3,10 @@
  function inspiry_config(){ 
     register_nav_menus( 
        array(
-           "top-navbar" => "Top Navbar (under logo)",
-          "inspiry_main_menu" => "Inspiry Main Menu",
-          "inspiry_footer_menu" => "Inspiry Footer Menu", 
-          "footer-trade-menu" => "Footer Trade Menu", 
-          "footer-help-info" => "Footer Help & info", 
-          "footer-ideas-inspiration" => "Footer Ideas & Inspiration", 
-          "footer-store" => "Footer Store", 
-          "footer-ways-to-shop" => "Footer Ways To Shop"
+           "top-navbar" => "Top Navbar",
+          "Hospo_main_menu" => "Hospo Main Menu",
+          "footer-quick-links" => 'Footer Quick Links'
+          
        )
        );  
 

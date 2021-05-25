@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html <?php language_attributes();?>>
 <head>
-    <!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-PS7XFHN');</script>
-<!-- End Google Tag Manager -->
+ 
 
     <meta charset="<?php bloginfo('charset');?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,134 +28,122 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <!-- End Google Tag Manager (noscript) -->
 
-    <section class="header" >
+    <section class="header  light-green-bc" >
        
-        <div class="top-banner beige-color-bc">
-           <!-- wishlist -->
-            <div class="wishlist">
-               <a href="<?php echo get_home_url().'/wishlist' ?>"   class="text-decoration-none dark-grey">
-                    <i class="fas fa-heart"></i>
-                    <span>Wishlist</span>
-               </a> 
-              
-            </div>
-              
-            <!-- login area -->
-            <div class="login-area playfair-fonts font-s-regular profile-trigger ">
+        <div class="top-banner row-container">
+
+            <!--Logo   -->
+            <div class="logo-container">
+
+            <?php 
+
+            $argsLogo = array(
+                'pagename' => 'contact', 
+                'posts_per_page' => 1
                
+            );
+            $logo = new WP_Query( $argsLogo );
+
+            while($logo->have_posts()){ 
+                $logo->the_post(); 
+
+                ?>
+                <a href="<?php echo get_site_url(); ?>">
                     <?php 
-                        if(is_user_logged_in()){
-                            global $current_user; wp_get_current_user();  
-                            ?> <a href="" class="profile-name-value text-decoration-none dark-grey">
-                                <i class="fas fa-user"></i> 
-                                <span>  
-                                     <?php echo  $current_user->display_name;?>
-                                    <i class="fas fa-chevron-down regular arrow-icon"></i>
-                                </span>
-                               
-                                <nav>
-                                <?php
-                                    wp_nav_menu( array( 
-                                        'theme_location' => 'my-account-nav-top', 
-                                        'container_class' => "my-account-nav"
-                                    )); 
-                                ?>
-                                </nav>  
-                                </a>       
-                            <?php
-                        }
-                        else{
-                            ?><a href="<?php echo get_site_url(); ?>/account-profile/" class="text-decoration-none dark-grey regular" data-root-url='<?php echo get_home_url()?>/account-profile'>
-                                <i class="fas fa-user"></i>
-                                <span>Login/Register</span> 
-                        </a>
-                            <?php
-                        }
+                       $image = get_field('logo');
+                       $size = 'full'; // (thumbnail, medium, large, full or custom size)
                     ?>
-                
-            </div>
-            
-            <!-- shopping cart -->
-            <div class="shopping-cart playfair-fonts font-s-regular desktop-visible">
-                <a href="#" class="text-decoration-none dark-grey regular cart-items-header">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="cart-item-count">Cart (<?php echo WC()->cart->get_cart_contents_count(); ?>)</span>
+                    <img src="<?php  print_r($image['sizes']['medium']);?>" alt="">
+                    
                 </a>
+                <?php
+                }
+                wp_reset_postdata();
+ 
+
+               ?>
             </div>
+            <!-- search code -->
             
             <div class="search-code playfair-fonts font-s-regular dark-grey">
-               <?php  echo  do_shortcode('[ivory-search id="7686" title="Default Search Form"]');?>
+               <?php  echo  do_shortcode('[ivory-search id="79" title="Default Search Form"]');?>
             </div>
-        </div>
 
-        <!--logo -->
-        <div class="logo-container">
-            <a href="<?php echo get_site_url(); ?>">
-                <img class="logo" src="<?php echo get_site_url(); ?>/wp-content/uploads/2020/11/Inspiry_Logo-transparent-1.png" alt="Inspiry Logo">
-            </a>
-            <?php 
-             global $post;
-             $post_slug = $post->post_name;
-                if($post_slug == 'inspiry-blogs'){ 
-                    ?>
-                    <img class="slogan" src="<?php echo  get_site_url();?>/wp-content/uploads/2020/11/Inspiry_Slogan.jpg" alt="Slogan">
-                    <?php
-                }
+            <div class="link-container">
+                <!-- wishlist -->
+                <div class="wishlist">
+                <a href="<?php echo get_home_url().'/wishlist' ?>"   class="text-decoration-none dark-grey">
+                        <i class="fas fa-heart"></i>
+                        <span>Wishlist</span>
+                </a> 
                 
-            ?>
-        </div>
-
-        <!--top navbar --> 
-        <nav class="navbar top-navbar">
-            <?php
-               wp_nav_menu(
-                    array(
-                        'theme_location' => 'top-navbar', 
-                        'container_id' => 'top-navbar'
-                    ));
-            ?>
+                </div>
+                
+                <!-- login area -->
+                <div class="login-area playfair-fonts font-s-regular profile-trigger ">
+                
+                        <?php 
+                            if(is_user_logged_in()){
+                                global $current_user; wp_get_current_user();  
+                                ?> <a href="" class="profile-name-value text-decoration-none dark-grey">
+                                    <i class="fas fa-user"></i> 
+                                    <span>  
+                                        <?php echo  $current_user->display_name;?>
+                                        <i class="fas fa-chevron-down regular arrow-icon"></i>
+                                    </span>
+                                
+                                    <nav>
+                                    <?php
+                                        wp_nav_menu( array( 
+                                            'theme_location' => 'top-navbar', 
+                                            'container_class' => "my-account-nav"
+                                        )); 
+                                    ?>
+                                    </nav>  
+                                    </a>       
+                                <?php
+                            }
+                            else{
+                                ?><a href="<?php echo get_site_url(); ?>/my-account/" class="text-decoration-none dark-grey regular" data-root-url='<?php echo get_home_url()?>/account-profile'>
+                                    <i class="fas fa-user"></i>
+                                    <span>Login/Register</span> 
+                            </a>
+                                <?php
+                            }
+                        ?>
+                    
+                </div>
+                
+                <!-- shopping cart -->
+                <div class="shopping-cart playfair-fonts font-s-regular desktop-visible">
+                    <a href="#" class="text-decoration-none dark-grey regular cart-items-header">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-item-count">Cart (<?php echo WC()->cart->get_cart_contents_count(); ?>)</span>
+                    </a>
+                </div>
+            </div>
            
 
             
-            
-        </nav>
+        </div>
 
-        <!--Shop  navbar--> 
-        <nav class="navbar">
+
+        <!--top navbar --> 
+        <nav class="navbar top-navbar light-red-color-bc">
+            <div class="links row-container">
             <?php
                wp_nav_menu(
                     array(
-                        'theme_location' => 'inspiry_main_menu', 
-                        'container_id' => 'cssmenu'
+                        'theme_location' => 'Hospo_main_menu', 
+                        'container_id' => 'top-navbar'
                     ));
             ?>
-        </nav>
+            </div>
                  
-        <div class="login-overlay"> 
-            <i class="fal fa-times"></i>   
-            <div class="form-content">
-                
-            </div>      
-        </div>
-
     </section>
 
 
-<?php 
-
-//hide join trade in navbar if the user is logged in 
-    if ( is_user_logged_in() ) {
-            ?>
-                <style>
-                     .mega-menu-item-13607{
-                         display: none !important;
-                     }
-                </style>
-            <?php 
-
-    }
-
-    ?>
+<!-- cart popup -->
       
         <div class="cart-popup-container box-shadow">
             

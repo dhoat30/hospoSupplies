@@ -1,192 +1,72 @@
-<section class="subscribe-section">
-  <div class="content">
-    <div class="section-ft-size">
-      Sign up For Inspiry Emails.
-    </div>
-    <div class="roboto-font font-s-regular">
-      Plus hear about the latest and greatest from our family of brands!
-    </div>
-  </div>
 
-  <div class="form">
-    <?php echo do_shortcode('[mc4wp_form id="88533"]');?>
-  </div>
-</section>
-<footer class="off-white-bc footer">
+<footer class="grey-bc footer">
 
-  <div class="footer-menu-row row-container light-grey">
-    <div class="trade-nav">
+  <div class="footer-menu-row row-container ">
+    <div class="quick-nav">
       <h6 class="footer-menu-title">
-        Trade
+        Quick Links
       </h6>
       <?php
                   wp_nav_menu( array( 
-                      'theme_location' => 'footer-trade-menu'
+                      'theme_location' => 'footer-quick-links'
                     )); 
             ?>
     </div>
 
-    <div class="help-info-nav">
+    <div class="contact">
       <h6 class="footer-menu-title">
-        Help & Info
+          Contact
       </h6>
-      <?php 
-              wp_nav_menu( array(
-                'theme_location' => 'footer-help-info'
-              ) )
-            ?>
+              <?php 
 
-    </div>
-
-    <div class="Store">
-      <h6 class="footer-menu-title">
-        Store
-      </h6>
-      <?php 
-              wp_nav_menu( array(
-                'theme_location' => 'footer-store'
-              ) )
-            ?>
-
-    </div>
-
-    <div class="ways-to-shop">
-      <h6 class="footer-menu-title">
-        Ways to Shop
-      </h6>
-      <?php 
-              wp_nav_menu( array(
-                'theme_location' => 'footer-ways-to-shop'
-              ) )
-            ?>
-
-    </div>
-
-    <div class="ideas-insipiration">
-      <h6 class="footer-menu-title">
-        IDEAS & INSPIRATION
-      </h6>
-      <?php 
-              wp_nav_menu( array(
-                'theme_location' => 'footer-ideas-inspiration'
-              ) )
-            ?>
-      <div class="social-media-footer">
-        <h6 class="column-s-font regular">Get social with us</h6>
-        <div class="underline-dg"></div>
-        <div class="social-media-container">
-          <?php 
-           $argsContact = array(
-            'pagename' => 'contact'
-          );
-          $queryContact = new WP_Query( $argsContact );
-          while($queryContact->have_posts()){
-            $queryContact->the_post(); 
-          ?>
-          <a class="social-icon" href="<?php echo get_field("facebook");?>" target="_blank"><i
-              class="fab fa-facebook-square"></i></a>
-          <a class="social-icon" href="<?php echo get_field("instagram");?>" target="_blank"><i class="fab fa-instagram-square"></i></a>
-          <a class="social-icon" href="<?php echo get_field("pintrest_");?>" target="_blank"><i class="fab fa-pinterest-square"></i></a>
-          <a class="social-icon" href="<?php echo get_field("youtube");?>" target="_blank"><i class="fab fa-youtube"></i></a>
-          <?php 
+        $argsContact = array(
+            'pagename' => 'contact', 
+            'posts_per_page' => 1
           
-          }
-          wp_reset_postdata(  );
-          ?>
-        </div>
+        );
+        $contact = new WP_Query( $argsContact );
+
+        while($contact->have_posts()){ 
+            $contact->the_post(); 
+
+            ?>
+            <ul>
+              <li><a href="tel:<?php echo get_field('phone_number');?>"><i class="fas fa-phone-square-alt dark-red"></i><?php echo get_field('phone_number');?></a></li>
+              <li><a href="tel:<?php echo get_field('toll_free_phone');?>"><i class="fas fa-phone-square-alt dark-red"></i><?php echo get_field('phone_number');?></a></li>
+              <li><a href="mailto:<?php echo get_field('email_');?>"><i class="fas fa-envelope dark-red"></i><?php echo get_field('email_');?></a></li>
+              <li><a href="<?php echo get_field('facebook');?>"><i class="fab fa-facebook-square dark-red"></i>Facebook</a></li>
+            </ul>
+            <?php 
+        wp_reset_postdata();
+        }
+        ?>
+     
+
+    </div>
+
+
+
+    <div class="newsletter">
+      <h6 class="footer-menu-title">
+        Get Monthly Catalogue
+
+      </h6>
+      <div class="mailchimp-form">
+        <?php echo do_shortcode('[mc4wp_form id="106"]');?>  
       </div>
 
     </div>
 
+
   </div>
 
-  <div class="footer-img">
-    <img src="<?php echo get_site_url();?>/wp-content/uploads/2020/11/Inspiry_Slogan-transparent.png" alt="Slogan">
-  </div>
-  <div class="copyright-container row-container light-grey">
-    <div>© Copyright 2019 Inspiry NZ. All rights reserved. <a href="https://webduel.co.nz" rel="nofollow"
+ 
+  <div class="copyright-container row-container">
+    <div>© Copyright 2019 Hospo Supplies. All rights reserved. <a href="https://webduel.co.nz" rel="nofollow"
         target="_blank" class="dark-green rm-txt-dec"> Built By WebDuel</a></div>
   </div>
 </footer>
 
-
-<!--design board container-->
-<div class="board-overlay overlay">
-  <div class="choose-board-container" data-post-id="value" data-post-title="value">
-    <div class="choose-board">Choose Board</div>
-    <div class="close-icon">X</div>
-    <ul class="board-list">
-      <?php 
-                                        
-                                        //wp query to get parent title of boards 
-                                        
-                                        $boardLoop = new WP_Query(array(
-                                            'post_type' => 'boards', 
-                                            'post_parent' => 0
-                                        ));
-                                        
-                                        while($boardLoop->have_posts()){
-                                            $boardLoop->the_post(); 
-                                            
-                                          
-                                        }
-                                    
-                                            while($boardLoop->have_posts()){ 
-                                                $boardLoop->the_post(); 
-                                                ?>
-      <li class="board-list-item" data-boardID='<?php echo get_the_id(); ?>'
-        data-postStatus='<?php echo get_post_status();?>'>
-
-        <?php 
-                                                            
-                                                        the_title();?>
-        <div class="custom-loader"></div>
-
-      </li>
-
-      <?php
-                                                wp_reset_postdata(  );
-                                            }
-                                        ?>
-    </ul>
-    <div class="create-new-board"><i class="fal fa-plus"></i> Create New Board</div>
-  </div>
-
-  <div class="project-save-form-section">
-
-    <div class="project-save-form-container">
-      <div class="roboto-font regular form-title font-s-med">Create Board</div>
-      <div class="form-underline"></div>
-      <div class="form">
-        <form id="new-board-form">
-          <label for="name">Give your board a title*</label>
-          <input type="text" name="board-name" id="board-name" required>
-          <label for="description">Description</label>
-          <textarea name="board-description" id="board-description" cols="30" rows="10"></textarea>
-          <div class="toggle-btn-container">
-            <label class="tgl tgl-gray" style="font-size:30px">
-              <input type="checkbox" checked />
-              <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>
-            </label>
-            <div class="toggle-status roboto-font thin"><i class="fal fa-lock"></i> Private
-            </div>
-
-          </div>
-          <div class="toggle-status-info roboto-font font-s-regular regular">
-            Private boards cannot be shared with the general public.
-          </div>
-
-          <div class="btn-container">
-            <button type="button" class="cancel-btn btn"> Cancel</button>
-            <button type="submit" class="save-btn btn btn-dk-green archive-save-btn"> Save</button>
-
-            <div class="custom-loader"></div>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="go-to-header hide" id='go-to-header'>
   <a href="#header"><i class="fad fa-caret-square-up"></i></a>

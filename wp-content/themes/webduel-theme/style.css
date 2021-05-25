@@ -43,34 +43,9 @@
 
 @import "css/page.css";
 
-/*geo directroy styling*/
-
-@import "css/trade-directory/add-listing.css";
-@import "css/trade-directory/save.css";
-@import "css/trade-directory/gd-page-location.css";
-@import "css/trade-directory/archive-items.css";
-@import "css/trade-directory/detail-page.css";
-@import "css/trade-directory/gd-project-detail.css";
-@import "css/trade-directory/project-archive-gd.css";
-@import "css/trade-directory/geo-checkout.css";
-@import "css/trade-directory/inspiry-trade.css";
-@import "css/trade-directory/trade-proffesional-page.css";
-
-/*buddypress */
-
-@import "css/trade-directory/buddypress-registration.css";
-@import "css/trade-directory/profile-buddypress.css";
-
 /*slider */
 
 @import "css/slider.css";
-
-/*board post type*/
-
-@import "css/trade-directory/single-board.css";
-@import "css/trade-directory/board-archive-page.css";
-@import "css/trade-directory/save-baord.css";
-@import "css/trade-directory/image-upload.css";
 
 /*footer*/
 
@@ -80,9 +55,9 @@
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  color: #0b0b0b;
-  font-family: "Playfair Display", serif;
+  color: #222222;
   scroll-behavior: smooth;
+  font-family: "Roboto", sans-serif;
 }
 h3 {
   font-family: "Roboto", sans-serif !important;
@@ -139,6 +114,7 @@ textarea::placeholder {
 .row-container {
   width: 95%;
   margin: 0 auto;
+  max-width: 1366px;
   position: relative;
 }
 
@@ -273,13 +249,13 @@ textarea::placeholder {
   letter-spacing: 0.2em;
   line-height: 1.3em;
   padding: 10px 25px 10px 25px !important;
-  border: 1px solid #303030;
+  border: 1px solid #ee6869;
   cursor: pointer;
   font-weight: 500 !important;
   border-radius: 0 !important;
 }
 .button:hover {
-  border: 1px solid #0b0b0b;
+  border: 1px solid #fd7a7a;
 }
 
 .btn {
@@ -287,7 +263,7 @@ textarea::placeholder {
   height: 40px;
   margin: 0 10px 0 0;
   outline: none;
-  border: 1px solid #303030;
+  border: 1px solid #ee6869;
   cursor: pointer;
   border-radius: 0 !important;
 }
@@ -297,18 +273,18 @@ textarea::placeholder {
 }
 .btn-dk-green-border {
   background-color: white !important;
-  border: 1px solid #303030 !important;
-  color: #303030 !important;
+  border: 1px solid #ee6869 !important;
+  color: #ee6869 !important;
 }
 
 .btn-dk-green-border:hover {
-  background-color: #303030 !important;
-  border: 1px solid #303030 !important;
+  background-color: #ee6869 !important;
+  border: 1px solid #ee6869 !important;
   color: white !important;
 }
 
 .btn-dk-green-border i {
-  color: #303030 !important;
+  color: #ee6869 !important;
 }
 
 .btn-dk-green-border:hover i {
@@ -316,7 +292,7 @@ textarea::placeholder {
 }
 
 .btn-dk-green {
-  background-color: #303030 !important;
+  background-color: #ee6869 !important;
   color: white !important;
 }
 
@@ -325,11 +301,11 @@ textarea::placeholder {
 }
 
 .btn-dk-green:hover {
-  background-color: #0b0b0b !important;
+  background-color: #fd7a7a !important;
 }
 
 .btn-dk-green:hover i {
-  background: #0b0b0b;
+  background: #fd7a7a;
 }
 
 /* colors*/
@@ -338,8 +314,8 @@ textarea::placeholder {
   color: white;
 }
 
-.dark-grey {
-  color: #303030;
+.dark-red {
+  color: #ee6869;
 }
 
 .light-grey {
@@ -347,21 +323,26 @@ textarea::placeholder {
 }
 
 .dark-green {
-  color: #303030;
+  color: #4bcc81;
 }
 
 .black-bc {
   background-color: black;
 }
 
-.beige-color-bc-lt {
+.light-red-color-bc-lt {
   background-color: #f8f7f3;
 }
 
-.beige-color-bc {
-  background-color: #efeae5;
+.light-red-color-bc {
+  background-color: #fc8a8a;
 }
-
+.light-green-bc {
+  background-color: #4bcc81 !important;
+}
+.grey-bc {
+  background: #222222 !important;
+}
 .off-white-bc {
   background-color: #efefef;
 }
@@ -386,7 +367,7 @@ textarea::placeholder {
 
 .rm-txt-dec {
   text-decoration: none;
-  color: #303030;
+  color: #ee6869;
 }
 
 .rm-txt-dec:link {
@@ -473,7 +454,7 @@ textarea::placeholder {
   right: 20px;
   font-size: 30px;
   cursor: pointer;
-  color: #303030;
+  color: #ee6869;
 }
 
 .fa-times:hover {
@@ -489,23 +470,23 @@ textarea::placeholder {
 
 .geodir-list-save-container .gd-badge {
   background-color: #fff !important;
-  color: #303030 !important;
-  border: solid #303030 !important;
+  color: #ee6869 !important;
+  border: solid #ee6869 !important;
   transition: 0.3s ease-in-out;
   font-size: 16px;
   border-radius: 0;
 }
 
 .geodir-list-save-container .gd-badge:hover {
-  background-color: #303030 !important;
+  background-color: #ee6869 !important;
   color: #fff !important;
-  border: solid #303030 !important;
+  border: solid #ee6869 !important;
 }
 
 .gd-badge-meta-saved .gd-badge {
-  background-color: #303030 !important;
+  background-color: #ee6869 !important;
   color: #fff !important;
-  border: solid #303030 !important;
+  border: solid #ee6869 !important;
 }
 
 /*404 */
@@ -582,7 +563,7 @@ textarea::placeholder {
   box-shadow: none;
   opacity: 1;
   transition: all 0.15s ease-in-out !important;
-  background-color: #303030 !important;
+  background-color: #ee6869 !important;
   letter-spacing: 1px !important;
   font-family: "playfair-display", serif !important;
 }

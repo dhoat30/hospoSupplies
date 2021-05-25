@@ -67,7 +67,7 @@ get_header();
         </div>
     </div>
 
-    <div class="beige-color-bc usp">
+    <div class="light-red-color-bc usp">
         <div>
             <i class="fal fa-truck"></i>
             <div>
