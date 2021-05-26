@@ -4,12 +4,12 @@
 //custom post register
 
 
-// add_post_type_support( "sliders", "thumbnail" ); 
+add_post_type_support( "sliders", "thumbnail" ); 
 
-// add_post_type_support( "loving", "thumbnail" ); 
-// add_post_type_support( "blogs", "thumbnail" );
+add_post_type_support( "category", "thumbnail" ); 
+add_post_type_support( "usp", "thumbnail" );
 // add_post_type_support( "shop-my-fav", "thumbnail" );
-// add_post_type_support( "shop_by_brand", "thumbnail" );
+ add_post_type_support( "brand", "thumbnail" );
 
 function register_custom_type2(){ 
     //brand logo
@@ -25,64 +25,61 @@ function register_custom_type2(){
          "all_items" => "All Contact Info", 
          "singular_name" => "Contact Info"
       ), 
-      "menu_icon" => "dashicons-info-outline
-      "
+      "menu_icon" => "dashicons-info-outline"
    )
    ); 
 
-//    //sliders psot type
-//    register_post_type("sliders", array(
-//       "supports" => array("title", "page-attributes", 'editor'), 
-//       "public" => true, 
-//       "show_ui" => true, 
-//       "hierarchical" => true,
-//       "labels" => array(
-//          "name" => "Sliders", 
-//          "add_new_item" => "Add New Slider", 
-//          "edit_item" => "Edit Slider", 
-//          "all_items" => "All Sliders", 
-//          "singular_name" => "Slider"
-//       ), 
-//       "menu_icon" => "dashicons-slides",
-//       'taxonomies'          => array('category')
-//    )
-//    ); 
+// sliders psot type
+   register_post_type("sliders", array(
+      "supports" => array("title", "page-attributes"), 
+      "public" => true, 
+      "show_ui" => true, 
+      "hierarchical" => true,
+      "labels" => array(
+         "name" => "Sliders", 
+         "add_new_item" => "Add New Slider", 
+         "edit_item" => "Edit Slider", 
+         "all_items" => "All Sliders", 
+         "singular_name" => "Slider"
+      ), 
+      "menu_icon" => "dashicons-slides"
+   )
+   ); 
 
-//    //loving post type
-//    register_post_type("loving", array(
-//       "supports" => array("title", "page-attributes", 'editor'), 
-//       "public" => true, 
-//       "show_ui" => true, 
-//       "hierarchical" => true,
-//       "labels" => array(
-//          "name" => "Lovings", 
-//          "add_new_item" => "Add New Loving", 
-//          "edit_item" => "Edit Loving", 
-//          "all_items" => "All Lovings", 
-//          "singular_name" => "Loving"
-//       ), 
-//       "menu_icon" => "dashicons-welcome-widgets-menus",
-//       'taxonomies'          => array('category')
-//    )
-//    );
+//    //category post type
+   register_post_type("category", array(
+      "supports" => array("title"), 
+      "public" => true, 
+      "show_ui" => true, 
+      "hierarchical" => true,
+      "labels" => array(
+         "name" => "Categories", 
+         "add_new_item" => "Add New Category", 
+         "edit_item" => "Edit Category", 
+         "all_items" => "All Categories", 
+         "singular_name" => "Category"
+      ), 
+      "menu_icon" => "dashicons-category"
+   )
+   );
 
 //    //blogs post type
-//    register_post_type("blogs", array(
-//       'show_in_rest' => true,
-//       "supports" => array("title", "page-attributes", 'editor'), 
-//       "public" => true, 
-//       "show_ui" => true, 
-//       "hierarchical" => true,
-//       "labels" => array(
-//          "name" => "Blogs", 
-//          "add_new_item" => "Add New Blog", 
-//          "edit_item" => "Edit Blog", 
-//          "all_items" => "All Blogs", 
-//          "singular_name" => "Blog"
-//       ), 
-//       "menu_icon" => "dashicons-welcome-write-blog"
-//    )
-//    );
+   register_post_type("usp", array(
+      'show_in_rest' => true,
+      "supports" => array("title", 'editor'), 
+      "public" => true, 
+      "show_ui" => true, 
+      "hierarchical" => true,
+      "labels" => array(
+         "name" => "USPs", 
+         "add_new_item" => "Add New USP", 
+         "edit_item" => "Edit USP", 
+         "all_items" => "All USPs", 
+         "singular_name" => "USP"
+      ), 
+      "menu_icon" => "dashicons-text-page"
+   )
+   );
 
 //    //loving post type
 //    register_post_type("shop-my-fav", array(
@@ -102,21 +99,21 @@ function register_custom_type2(){
 //    );
    
 //    //shop by brand page post type
-//    register_post_type("shop_by_brand", array(
-//       "supports" => array("title", "page-attributes"), 
-//       "public" => true, 
-//       "show_ui" => true, 
-//       "hierarchical" => true,
-//       "labels" => array(
-//          "name" => "Brands", 
-//          "add_new_item" => "Add New Brand", 
-//          "edit_item" => "Edit Brand", 
-//          "all_items" => "All Brands", 
-//          "singular_name" => "Brand"
-//       ), 
-//       "menu_icon" => "dashicons-shield"
-//    )
-//    );
+   register_post_type("brand", array(
+      "supports" => array("title"), 
+      "public" => true, 
+      "show_ui" => true, 
+      "hierarchical" => true,
+      "labels" => array(
+         "name" => "Brands", 
+         "add_new_item" => "Add New Brand", 
+         "edit_item" => "Edit Brand", 
+         "all_items" => "All Brands", 
+         "singular_name" => "Brand"
+      ), 
+      "menu_icon" => "dashicons-shield"
+   )
+   );
 
 //       // typrewriter effect 
 
@@ -143,16 +140,16 @@ add_action("init", "register_custom_type2");
 
 
 
-// //custom taxonomy
-// function wpdocs_register_private_taxonomy() {
-//    $args = array(
-//        'label'        => __( 'favorite', 'textdomain' ),
-//        'public'       => true,
-//        'rewrite'      => true,
-//        'hierarchical' => true
-//    );
+//custom taxonomy
+function wpdocs_register_private_taxonomy() {
+   $args = array(
+       'label'        => __( 'slider', 'textdomain' ),
+       'public'       => true,
+       'rewrite'      => true,
+       'hierarchical' => true
+   );
     
-//    register_taxonomy( 'favorite', 'shop-my-fav', $args );
+   register_taxonomy( 'slider', 'sliders', $args );
 
 //    $argsBlog = array(
 //       'label'        => __( 'Blog Categories', 'textdomain' ),
@@ -173,7 +170,7 @@ add_action("init", "register_custom_type2");
 //    'show_in_rest' => true
 // );
 
-// register_taxonomy( 'typewriter-effect', 'typewriter_effect', $argsTypewriter );
+register_taxonomy( 'typewriter-effect', 'typewriter_effect', $argsTypewriter );
 
-// }
-// add_action( 'init', 'wpdocs_register_private_taxonomy', 0 );
+}
+add_action( 'init', 'wpdocs_register_private_taxonomy', 0 );

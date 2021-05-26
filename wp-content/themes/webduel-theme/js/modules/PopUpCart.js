@@ -20,9 +20,9 @@ class PopUpCart {
     removeItem(e) {
         e.preventDefault();
         let productID = $(e.target).attr('data-productID');
-        let url = 'https://inspiry.co.nz/wp-admin/admin-ajax.php';
+        let url = 'https://hosposupplies.co.nz/wp-admin/admin-ajax.php';
         if (location.hostname === "localhost" || location.hostname === "127.0.0.1") {
-            url = 'http://localhost/inspiry/wp-admin/admin-ajax.php';
+            url = 'http://localhost/hospo/wp-admin/admin-ajax.php';
         }
 
         $.ajax({

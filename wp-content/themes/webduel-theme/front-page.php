@@ -18,7 +18,7 @@ get_header();
                                             'post_type' => 'sliders',
                                             'tax_query' => array(
                                                 array(
-                                                    'taxonomy' => 'category',
+                                                    'taxonomy' => 'slider',
                                                     'field'    => 'slug',
                                                     'terms'    => array( 'home-page-hero-slider'),
                                                 )
@@ -40,15 +40,15 @@ get_header();
                                             }
                                           
                                             ?>
-                                        <a class="slide" href="<?php echo  get_field('add_link'); ?>">
-                                           <picture > 
-                                                <source media="(min-width:700px)" srcset="<?php echo get_the_post_thumbnail_url(null,"full"); ?>">
-                                                <source media="(min-width:465px)" srcset="<?php echo get_the_post_thumbnail_url(null,"large"); ?>">
-                                                <img   src="<?php echo esc_url($imgUrl);?>" alt="<?php echo get_the_title();?>">
-                                            </picture>   
+                                            <a class="slide" href="<?php echo  get_field('add_link'); ?>">
+                                            <picture > 
+                                                    <source media="(min-width:700px)" srcset="<?php echo get_the_post_thumbnail_url(null,"full"); ?>">
+                                                    <source media="(min-width:465px)" srcset="<?php echo get_the_post_thumbnail_url(null,"large"); ?>">
+                                                    <img   src="<?php echo esc_url($imgUrl);?>" alt="<?php echo get_the_title();?>">
+                                                </picture>   
 
-                                        </a>                       
-                                            <?php
+                                            </a>                       
+                                                <?php
 
                                        
                                         }
@@ -67,140 +67,139 @@ get_header();
         </div>
     </div>
 
-    <div class="light-red-color-bc usp">
-        <div>
-            <i class="fal fa-truck"></i>
-            <div>
-                <span class="roboto-font font-s-med ft-wt-med">Free Shipping NZ Wide</span> <br>
-                <span>on all wallpaper and fabric</span>
-            </div>
 
-        </div>
-        <div>
-            <i class="fal fa-tag"></i>
-            <div>
-                <span class="roboto-font font-s-med ft-wt-med">Beautiful Designer Brands</span> <br>
-                <span class="roboto-font font-s-regular">furniture, homeware & rugs</span>
-            </div>
-        </div>
-        <div>
-            <i class="fal fa-shipping-timed"></i>
-            <div>
-                <span class="roboto-font font-s-med ft-wt-med">shipped daily</span> <br>
-                <span>to your door</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="box-section">
-        <div class="flex">
-            <div class="photo photo-1">
-                <picture>
-                    <source media="(max-width: 500px)"
-                        srcset="<?php echo get_site_url();?>/wp-content/uploads/2020/11/frida_image_roomshot_kitchen_item_7675-370x370.jpg">
-                    <source media="(max-width: 800px)"
-                        srcset="<?php echo get_site_url();?>/wp-content/uploads/2020/11/frida_image_roomshot_kitchen_item_7675-960x960.jpg">
-                    <img loading="lazy" src="<?php echo get_site_url();?>/wp-content/uploads/2020/11/frida_image_roomshot_kitchen_item_7675.jpg"
-                        alt="Frida">
-                </picture>
-
-            </div>
-
-            <div class="boxes">
-                <div>
-                    <p class="section-ft-size white center-align"> Creative Kitchen Walls</p>
-                    <a class="rm-txt-dec shop-borastapeter-button-home" href="<?php echo get_site_url();?>/brands/boras-tapeter/"> <i
-                            class="fal fa-arrow-left "></i> Shop Borastapeter <i class="fal fa-arrow-up"></i></a>
-                </div>
-                <div>
-                    <p class="section-ft-size white center-align"> Good Things Are Coming</p>
-                    <a class="rm-txt-dec shop-khroma-button-home" href="<?php echo get_site_url();?>/brands/khroma"> Shop Khroma <i
-                            class="fal fa-arrow-right"></i> <i class="fal fa-arrow-down"></i></a>
-                </div>
-            </div>
-
-            <div class="photo photo-2">
-                <picture>
-                    <source media="(max-width: 500px)"
-                        srcset="<?php echo get_site_url();?>/wp-content/uploads/2020/11/PICTCAB803-1-370x370.jpg">
-                    <source media="(max-width: 800px)"
-                        srcset="<?php echo get_site_url();?>/wp-content/uploads/2020/11/PICTCAB803-1-960x960.jpg">
-                    <img loading="lazy" src="<?php echo get_site_url();?>/wp-content/uploads/2020/11/PICTCAB803-1.jpg"
-                        alt="Khroma">
-                </picture>
-            </div>
-
-        </div>
-
-
-    </div>
+    
 </section>
 
-
-
-
-<!--Loving Section ----->
-
-<div class="loving-section row-section margin-row">
-    <div class="underline-dg"></div>
-
-    <div class="lg-font-sz center-align">What We’re Loving</div>
-    <div class="flex">
-
-        <?php 
-
-            $argsLoving = array(
-                'post_type' => 'loving',
-                'tax_query' => array(
-                    array(
-                        'taxonomy' => 'category',
-                        'field'    => 'slug',
-                        'terms'    => array( 'home-page-loving-section')
-                    )
-                    ), 
-                    'orderby' => 'date', 
-                    'order' => 'ASC'
-            );
-            $loving = new WP_Query( $argsLoving );
-
-            while($loving->have_posts()){ 
-                $loving->the_post(); 
-
-                ?>
-        
-            <div class="cards">
-            
-                <div>
-                    <picture>
-                        <source media="(max-width: 500px)"
-                            srcset="<?php echo get_the_post_thumbnail_url(null,"medium"); ?>">
-                       
-                        <img loading="lazy" src="<?php echo get_the_post_thumbnail_url(null,"large"); ?>"
-                            alt="Khroma">
-                    </picture>
-                    <a class="rm-txt-dec center-align"  id="we-are-loving" href="<?php echo get_field('add_link');?>">Shop Now <i
-                            class="fal fa-arrow-right"></i> </a>
-                </div>
-            </div>
-    
-        <?php 
-
-            }
-            wp_reset_postdata();
-            ?>
-
-
-
-
+<!-- category section  -->
+<div class="category-section off-white-bc">
+    <div class="category-container row-container">
+        <div class="lg-font-sz center-align title-underline">Shop By Category</div>                                    
     </div>
-</div>
-<section class="brand-stripe">
+
     <div class="flex">
+        <?php 
+
+            $argsCategory = array(
+                'post_type' => 'category', 
+                'posts_per_page' => -1
+            );
+            $category = new WP_Query( $argsCategory );
+
+            while($category->have_posts()){ 
+                $category->the_post(); 
+                ?>
+            <div class="cards">
+                <a class="rm-txt-dec" href="<?php echo get_the_permalink();?>">
+                        <img src="<?php echo get_the_post_thumbnail_url(null,"medium")?>" alt="<?php echo get_the_title();?>">
+                        <h3 class="center-align regular"><?php echo  get_the_title();?></h3>
+                        <button  class="rm-txt-dec button btn-dk-red thin">Browse</button>
+                </a>
+
+            </div>
+            <?php 
+
+                }
+                wp_reset_postdata();
+                ?>
+    </div>
+
+              
+
+</div>
+
+
+<!-- USP  -->
+<div class="usp-section">
+    <div class="usp-container row-container">
+        <div class="lg-font-sz center-align title-underline">What Do We Do Better? </div>                                    
+    </div>
+
+    <div class="flex row-container">
+        <?php 
+
+            $argsUSP = array(
+                'post_type' => 'usp', 
+                'posts_per_page' => -1
+            );
+            $usp = new WP_Query( $argsUSP );
+
+            while($usp->have_posts()){ 
+                $usp->the_post(); 
+                ?>
+            <div class="cards">
+                <div class="img-container">
+                    <img src="<?php echo get_the_post_thumbnail_url(null,"large")?>" alt="<?php echo get_the_title();?>">
+                        
+                </div>
+                <div class="content-container">
+                    <div class="section-ft-size "><?php echo get_the_title();?></div>
+                    <?php the_content();?>
+                </div>
+                        
+                
+
+            </div>
+            <?php 
+
+                }
+                wp_reset_postdata();
+                ?>
+    </div>
+
+              
+
+</div>
+
+
+<!-- about us -->
+
+<section class="about-section">
+    <div class="flex row-container">
 
     <?php 
 
             $brandLogo = array(
-                'post_type' => 'brand-logo',
+                'pagename' => 'never-settling-for-good-enough',
+                'posts_per_page'=> -1
+            );
+            $brandLogoQuery = new WP_Query( $brandLogo );
+
+            while($brandLogoQuery->have_posts()){ 
+                $brandLogoQuery->the_post(); 
+
+                ?>
+        <div class="content">
+            <div class="section-ft-size "><?php echo get_the_title();?></div>
+            <p class="paragraph"><?php echo get_the_content();?></p>
+            <a class="button rm-txt-dec btn-dk-red" href="<?php echo get_field('about_us_page_link');?>">About Us</a>
+        </div>
+        <div class="img-container">
+            <img loading="lazy" src="<?php echo get_the_post_thumbnail_url(null,"large"); ?>" alt="<?php echo get_the_title();?>">
+
+        </div>
+       
+
+    <?php 
+            }
+            wp_reset_postdata();
+
+    ?>
+
+    </div>
+</section>
+
+<!-- brand  -->
+<section class="brand-stripe">
+    <div class="row-container">
+        <div class="lg-font-sz center-align title-underline ">Our Range </div>                                    
+    </div>
+    <div class="flex row-container">
+
+    <?php 
+
+            $brandLogo = array(
+                'post_type' => 'brand',
                 'posts_per_page'=> -1
             );
             $brandLogoQuery = new WP_Query( $brandLogo );
@@ -221,132 +220,6 @@ get_header();
 
     </div>
 </section>
-<div class="row-container featured-project-section">
-    <div class="underline-dg"></div>
-
-    <div class="lg-font-sz center-align">Featured Project</div>
-
-    <div class="flex">
-        <?php 
-                $argsPorject = array(
-                    'post_type' => 'gd_project', 
-                    'posts_per_page' => 4
-                );
-                $project = new WP_Query( $argsPorject );
-    
-                while($project->have_posts()){ 
-                    $project->the_post(); 
-                    ?>
-
-
-        <div class="card">
-            <a href="<?php the_permalink();?>" class="view-project">
-                <div>
-                   
-                    <img loading="lazy" src="<?php echo get_the_post_thumbnail_url(null, 'large');?>" alt="">
-                    <div class="hover-overlay"></div>
-                    <div class="column-s-font"><?php the_title();?></div>
-                </div>
-            </a>
-        </div>
-        <?php
-                    } 
-                    wp_reset_postdata();
-            ?>
-    </div>
-</div>
-
-<div class="row-container featured-trade-section">
-    <div class="flex">
-        <div class="card">
-            <div class="column-s-font center-align ft-wt-med">TRADE PROFESSIONALS</div>
-            <div class="underline-dg center-align"></div>
-            <div class="paragraph center-align">Inspiry Trade <br>
-                List your services with and be apart of our 'Be Inspired' page with your featured projects.
-                <br>Request an information pack<br>
-                trade@inspiry.co.nz
-            </div>
-            <a href="<?php echo get_site_url();?>/location" id="view-trade-proffesional" class="rm-txt-dec button btn-dk-green">View Trade
-                Professionals</a>
-        </div>
-
-        <?php 
-                $argsTrade = array(
-                    'post_type' => 'gd_place', 
-                    'posts_per_page' => 2, 
-                    'order'=>'DESC', 
-                    'orderby'=> 'title'
-                );
-                $trade = new WP_Query( $argsTrade );
-    
-                while($trade->have_posts()){ 
-                    $trade->the_post(); 
-                    ?>
-
-
-        <div class="card">
-            <img loading="lazy" class="gallery" src="<?php echo get_the_post_thumbnail_url(null, 'large');?>"
-                alt="Trade Proffesionals">
-            <div class="logo">
-
-                <?php
-                                $variable =  do_shortcode('[gd_post_meta key="logo" show="value-raw" no_wrap="1" alignment="left"]');
-                                $variable = substr($variable, 0, strpos($variable, "|"));
-                                ?>
-                <img loading="lazy" src="<?php echo  $variable?>" alt="<?php the_title();  ?>">
-            </div>
-            <div class="font-s-med center-align regular light-grey"><?php the_title();  ?></div>
-
-            <table>
-                <tr>
-                    <th>LOCATION:</th>
-
-                    <td><?php echo do_shortcode('[gd_post_meta key="city" show="value-raw" no_wrap="1" alignment="left"]');?>
-                    </td>
-                </tr>
-                <tr>
-                    <th>PHONE:</th>
-
-                    <td>
-                        <a class="rm-txt-dec"
-                            href='tel:<?php echo do_shortcode('[gd_post_meta key="phone" show="value-raw"  no_wrap="1" alignment="left"]');?>'>
-
-                            <?php echo do_shortcode('[gd_post_meta key="phone" show="value-raw" no_wrap="1" alignment="left"]');?>
-                    </td>
-                    </a>
-                </tr>
-
-                <tr>
-                    <th>EMAIL:</th>
-
-                    <td>
-                        <a class="rm-txt-dec"
-                            href='mailto:<?php echo do_shortcode('[gd_post_meta key="email" show="value-raw"  no_wrap="1" alignment="left"]');?>'>
-
-                            <?php echo do_shortcode('[gd_post_meta key="email" show="value-raw" no_wrap="1" alignment="left"]');?>
-                        </a>
-                    </td>
-
-                </tr>
-
-                <tr>
-                    <th>WEBSITE:</th>
-                    <td>
-                        <a class="rm-txt-dec"
-                            href='mailto:<?php echo do_shortcode('[gd_post_meta key="email" show="value-raw"  no_wrap="1" alignment="left"]');?>'>
-
-                            <?php echo do_shortcode('[gd_post_meta key="website" show="value-strip" no_wrap="1" alignment="left"]');?>
-                        </a>
-                    </td>
-                </tr>
-            </table>
-
-        </div>
-        <?php
-                    } 
-            ?>
-    </div>
-</div>
 
 <script>
     const slides = document.querySelectorAll('.slide');

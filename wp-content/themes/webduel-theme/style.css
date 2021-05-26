@@ -271,40 +271,40 @@ textarea::placeholder {
   width: 100%;
   display: block;
 }
-.btn-dk-green-border {
+.btn-dk-red-border {
   background-color: white !important;
   border: 1px solid #ee6869 !important;
   color: #ee6869 !important;
 }
 
-.btn-dk-green-border:hover {
+.btn-dk-red-border:hover {
   background-color: #ee6869 !important;
   border: 1px solid #ee6869 !important;
   color: white !important;
 }
 
-.btn-dk-green-border i {
+.btn-dk-red-border i {
   color: #ee6869 !important;
 }
 
-.btn-dk-green-border:hover i {
+.btn-dk-red-border:hover i {
   color: white !important;
 }
 
-.btn-dk-green {
+.btn-dk-red {
   background-color: #ee6869 !important;
   color: white !important;
 }
 
-.btn-dk-green i {
+.btn-dk-red i {
   color: white !important;
 }
 
-.btn-dk-green:hover {
+.btn-dk-red:hover {
   background-color: #fd7a7a !important;
 }
 
-.btn-dk-green:hover i {
+.btn-dk-red:hover i {
   background: #fd7a7a;
 }
 
@@ -367,7 +367,6 @@ textarea::placeholder {
 
 .rm-txt-dec {
   text-decoration: none;
-  color: #ee6869;
 }
 
 .rm-txt-dec:link {
@@ -547,7 +546,7 @@ textarea::placeholder {
   text-decoration: underline;
 }
 /*woocommerce button*/
-.woo-btn-dk-green {
+.woo-btn-dk-red {
   display: block;
   color: #fff !important;
   font-family: sans-serif;
@@ -565,10 +564,10 @@ textarea::placeholder {
   transition: all 0.15s ease-in-out !important;
   background-color: #ee6869 !important;
   letter-spacing: 1px !important;
-  font-family: "playfair-display", serif !important;
+  font-family: "Roboto", sans-serif !important;
 }
-.woo-btn-dk-green:hover {
-  background: #4b4b4b !important;
+.woo-btn-dk-red:hover {
+  background: #fd7a7a !important;
 }
 
 /* getpaid error fix */
@@ -581,3 +580,16 @@ textarea::placeholder {
 }
 
 /* lightbox for design board */
+.title-underline {
+  position: relative;
+}
+.title-underline::after {
+  position: absolute;
+  width: 200px;
+  height: 4px;
+  content: " ";
+  background: red;
+  bottom: -20px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}

@@ -35,33 +35,33 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <!--Logo   -->
             <div class="logo-container">
 
-            <?php 
+                <?php 
 
-            $argsLogo = array(
-                'pagename' => 'contact', 
-                'posts_per_page' => 1
-               
-            );
-            $logo = new WP_Query( $argsLogo );
+                $argsLogo = array(
+                    'pagename' => 'contact', 
+                    'posts_per_page' => 1
+                
+                );
+                $logo = new WP_Query( $argsLogo );
 
-            while($logo->have_posts()){ 
-                $logo->the_post(); 
+                while($logo->have_posts()){ 
+                    $logo->the_post(); 
+
+                    ?>
+                    <a href="<?php echo get_site_url(); ?>">
+                        <?php 
+                        $image = get_field('logo');
+                        $size = 'full'; // (thumbnail, medium, large, full or custom size)
+                        ?>
+                        <img src="<?php  print_r($image['sizes']['medium']);?>" alt="">
+                        
+                    </a>
+                    <?php
+                    }
+                    wp_reset_postdata();
+    
 
                 ?>
-                <a href="<?php echo get_site_url(); ?>">
-                    <?php 
-                       $image = get_field('logo');
-                       $size = 'full'; // (thumbnail, medium, large, full or custom size)
-                    ?>
-                    <img src="<?php  print_r($image['sizes']['medium']);?>" alt="">
-                    
-                </a>
-                <?php
-                }
-                wp_reset_postdata();
- 
-
-               ?>
             </div>
             <!-- search code -->
             
@@ -231,10 +231,10 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         </div>
                     </div>
                     <div class="cont-shopping">
-                            <a class="rm-txt-dec button btn-dk-green-border btn-full-width center-align" href="#">Continue Shopping</a>
+                            <a class="rm-txt-dec button btn-dk-red-border btn-full-width center-align" href="#">Continue Shopping</a>
                         </div>
                     <div class="checkout-btn">
-                        <a class="rm-txt-dec button btn-dk-green btn-full-width center-align checkout-btn-header" href="<?php echo get_site_url();?>/cart">Checkout</a>
+                        <a class="rm-txt-dec button btn-dk-red btn-full-width center-align checkout-btn-header" href="<?php echo get_site_url();?>/cart">Checkout</a>
                     </div>
                 </div>
             </div>

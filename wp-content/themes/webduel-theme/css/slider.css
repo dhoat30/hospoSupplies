@@ -8,7 +8,6 @@
 }
 .slider img {
   width: 100%;
-  padding-bottom: 43.75%;
 }
 
 .slide {
@@ -16,7 +15,7 @@
   top: 0;
   left: 0;
   width: 100%;
-
+  bottom: 0;
   opacity: 0;
   transition: opacity 0.4s ease-in-out;
 }
@@ -104,6 +103,5 @@
   }
   .slider img {
     width: 100%;
-    padding-bottom: 100%;
   }
 }
