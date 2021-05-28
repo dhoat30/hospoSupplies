@@ -1,109 +1,83 @@
-.login-form-container {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 50px;
-   
+/* account navigation  */
+.woocommerce-MyAccount-navigation ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin: 50px 0;
+}
+.woocommerce-MyAccount-navigation ul li {
+  list-style: none !important;
+
+  margin: 20px 10px;
 }
 
-.login-form-container>div {
-    width: 45%;
-    max-width: 500px;
-    margin: 20px;
+.woocommerce-MyAccount-navigation ul li a {
+  text-decoration: none;
+  border: 1px solid #fc8a8a;
+  padding: 10px 20px;
 }
-@media (max-width:800px){
-    .login-form-container>div {
-        width: 100%;
-        
-    }
-}
-.login-form-container form {
-    border: 1px solid rgba(0,0,0,0.3) !important;
-    display: flex !important;
-        flex-direction: column !important;
-        flex-wrap: wrap;
-        align-items: flex-start;
-    justify-content: flex-start !important;
-    padding: 20px;
-    margin-top: 20px;
+.woocommerce-MyAccount-navigation ul li a:hover {
+  text-decoration: none;
+  background: #fc8a8a;
+  border: 1px solid #fc8a8a;
+  padding: 10px 20px;
 }
 
-.login-form-container .login-section{
-    display: flex !important;
-    flex-direction: column !important;
-    flex-wrap: wrap;
-justify-content: flex-start !important;
+/* orders table */
+.woocommerce-account .woocommerce-orders-table {
+  max-width: 100% !important;
 }
-.form-row{
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: flex-start !important;
-    align-items: flex-start !important;
-   width: 100%;
 
+/* address section */
+.woocommerce-Address h3 {
+  font-weight: 500 !important;
+  margin: 10px 0;
 }
-.form-row::before {
-content: none !important; 
+.woocommerce-Address address {
+  font-weight: 400 !important;
+  margin-bottom: 20px;
+  font-style: normal !important;
 }
-.form-row::after {
-    content: none !important; 
-    }
 
-.login-form-container input{
-    display: block !important;
-    width: 100% !important;
-    height: 50px !important;
-    
+/* Account details */
+.woocommerce-EditAccountForm input {
+  height: 40px !important;
+  padding: 0 5px;
 }
-.login-form-container label{
-    text-decoration: none !important;
-    font-weight: 400 !important;
-    border: none !important; 
+.woocommerce-EditAccountForm button {
+  display: block !important;
+  margin: 20px auto !important;
+  width: 200px !important;
 }
-.login-form-container #rememberme{
-    width: 30px !important;
-    height: 20px !important;
-    margin-left: 10px;
+.woocommerce-EditAccountForm fieldset {
+  margin-top: 30px;
 }
-.login-form-container button{
-    margin: 20px 0 0 0;
-}
-.register-section button{
-    margin: 20px 0 0 0 !important;
-    font-size: 16px;
-}
-/*remember me*/
-.remember-me-label{
-    display: flex; 
-    flex-direction: row !important;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: flex-start !important;
-    }
 
-    /*login lightbox*/
-    .login-overlay{
-        overflow: scroll;
-    } 
-    .login-overlay .register-section{
-        display: none;
-    }
-    .login-overlay .login-form-container{
-        margin: 0 !important;
-        width: 100% !important;
-        overflow: scroll;
-    }
-    .login-overlay .login-section{
-        width: 100% !important;
-    }
-    .login-overlay .form-content{
-        margin: 0 !important;
-    }
-    .login-overlay .woocommerce{
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: flex-start;
-        width: 100%;
-    }
+/* register page */
+#customer_login .u-column1 {
+  display: none;
+}
+#customer_login .u-column2 {
+  width: 95%;
+  margin: 0 auto;
+  max-width: 500px;
+}
+#customer_login input {
+  height: 40px;
+  padding: 5px;
+}
+#customer_login h2 {
+  display: none;
+}
+
+/* lost password  */
+.woocommerce-account .woocommerce-ResetPassword {
+  max-width: 500px;
+  width: 95%;
+  margin: 0 auto;
+}
+.woocommerce-account .woocommerce-ResetPassword input {
+  height: 40px;
+}

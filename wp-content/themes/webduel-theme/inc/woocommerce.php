@@ -2,14 +2,22 @@
 
 // archive page code 
 // add shortcode for woocommerce fitlers above the main content
-// add_action('woocommerce_before_main_content', 'add_woocommerce_filter', 10); 
+add_action('woocommerce_before_main_content', 'add_woocommerce_filter', 10); 
 
-// function add_woocommerce_filter(){
-//   // check if the page is category page
-//   if(is_archive()){
-//     echo do_shortcode('[woof sid="auto_shortcode" autohide=1 taxonomies=product_cat:9]');
-//     }
-// }
+function add_woocommerce_filter(){
+  // check if the page is category page
+  if(is_archive()){
+    echo '<div class="section-ft-size margin-elements"> Filters </div>';
+    if(strstr($_SERVER['SERVER_NAME'], 'localhost')){
+      echo do_shortcode('	[br_filters_group group_id=204]');
+    }
+    else{
+      echo do_shortcode('[br_filters_group group_id=26953]');
+    }
+    
+    echo '<br> <br>';
+    }
+}
 
 // archive page styling 
 //add row-container div
@@ -72,3 +80,25 @@ add_filter( 'woocommerce_output_related_products_args', 'jk_related_products_arg
 	$args['columns'] = 6; // arranged in 2 columns
 	return $args;
 }
+
+// account navbar order
+
+function my_account_menu_order() {
+  $menuOrder = array(
+    'dashboard'          => __( 'Dashboard', 'woocommerce' ),
+    'orders'             => __( 'Your Orders', 'woocommerce' ),
+    'edit-address'       => __( 'Addresses', 'woocommerce' ),
+    'edit-account'    	=> __( 'Account Details', 'woocommerce' ),
+    'customer-logout'    => __( 'Logout', 'woocommerce' ),
+  );
+  return $menuOrder;
+}
+add_filter ( 'woocommerce_account_menu_items', 'my_account_menu_order' );
+
+// checkout styling
+
+
+add_action('woocommerce_checkout_before_order_review_heading', function(){
+  echo '<div class="order-review-container">';
+});
+add_action('woocommerce_review_order_after_payment', 'closing_div');

@@ -83,7 +83,12 @@
   color: white !important;
   filter: brightness(115%);
 }
-
+.checkout-button,
+#place_order {
+  background-color: #ee6869 !important;
+  color: white !important;
+  font-size: 16px !important;
+}
 /*cart labels*/
 .cart-labels {
   display: flex !important;

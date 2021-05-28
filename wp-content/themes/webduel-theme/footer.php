@@ -52,7 +52,15 @@
 
       </h6>
       <div class="mailchimp-form">
-        <?php echo do_shortcode('[mc4wp_form id="106"]');?>  
+        <?php 
+        if(strstr($_SERVER['SERVER_NAME'], 'localhost')){
+          echo do_shortcode('[mc4wp_form id="106"]');
+
+        }
+        else{
+          echo do_shortcode('[mc4wp_form id="26989"]');
+        }
+        ?>
       </div>
 
     </div>

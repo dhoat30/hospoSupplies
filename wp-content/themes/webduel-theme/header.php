@@ -64,15 +64,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 ?>
             </div>
             <!-- search code -->
-            
+            <div class="search-icon"><svg focusable="false" aria-label="Search" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="30px"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></div>
             <div class="search-code playfair-fonts font-s-regular dark-grey">
-               <?php  echo  do_shortcode('[ivory-search id="79" title="Default Search Form"]');?>
+                <i class="fal fa-times"></i>
+                <?php if (strstr($_SERVER['SERVER_NAME'], 'localhost')) {
+                    echo  do_shortcode('[ivory-search id="79" title="Default Search Form"]');
+                    }
+                    else{
+                        echo do_shortcode('[ivory-search id="26873" title="Default Search Form"]');
+                    }
+                    
+                    ?>
+             
             </div>
 
             <div class="link-container">
                 <!-- wishlist -->
                 <div class="wishlist">
-                <a href="<?php echo get_home_url().'/wishlist' ?>"   class="text-decoration-none dark-grey">
+                <a href="<?php echo get_home_url().'/wishlist' ?>"   class="text-decoration-none white">
                         <i class="fas fa-heart"></i>
                         <span>Wishlist</span>
                 </a> 
@@ -85,7 +94,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         <?php 
                             if(is_user_logged_in()){
                                 global $current_user; wp_get_current_user();  
-                                ?> <a href="" class="profile-name-value text-decoration-none dark-grey">
+                                ?> <a href="" class="profile-name-value text-decoration-none white">
                                     <i class="fas fa-user"></i> 
                                     <span>  
                                         <?php echo  $current_user->display_name;?>
@@ -104,9 +113,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 <?php
                             }
                             else{
-                                ?><a href="<?php echo get_site_url(); ?>/my-account/" class="text-decoration-none dark-grey regular" data-root-url='<?php echo get_home_url()?>/account-profile'>
+                                ?><a href="<?php echo get_site_url(); ?>/my-account/" class="text-decoration-none dark-grey regular" data-root-url='<?php echo get_home_url()?>/account-profile' id="show_login">
                                     <i class="fas fa-user"></i>
-                                    <span>Login/Register</span> 
+                                    <span>Login</span> 
                             </a>
                                 <?php
                             }
@@ -242,59 +251,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 		</div>
 
 
+<!-- login form  -->
+<form id="login" action="login" method="post">
+        <h1>Site Login</h1>
+        <p class="status"></p>
+        <label for="username">Username</label>
+        <input id="username" type="text" name="username">
+        <label for="password">Password</label>
+        <input id="password" type="password" name="password">
+        <a class="lost" href="<?php echo wp_lostpassword_url(); ?>">Lost your password?</a>
+           
+        <div class="flex">
+            <input class="submit_button" type="submit" value="Login" name="submit">
+            <a class="btn-dk-red-border button rm-txt-dec center-align" href="<?php echo get_site_url();?>/my-account">Register</a>
+        </div>
 
-    <!-- gtag manager data -->
-    <script type="text/javascript">
-console.log('it is working now')
-var placeOrderBtn = document.getElementsByClassName("checkout-btn-header");
-
-placeOrderBtn.addEventListener("click", function(event) {
-   
-    dataLayer.push({
-        'event': 'checkout',
-        'ecommerce': {
-            'checkout': {
-                'actionField': {'step': 1},
-                'products': [
-    <?php
-      foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
-        $product = $cart_item['data'];
-        $product_id = $cart_item['product_id'];
-        $quantity = $cart_item['quantity'];
-        $price = WC()->cart->get_product_price( $product );
-        $subtotal = WC()->cart->get_product_subtotal( $product, $cart_item['quantity'] );
-        $link = $product->get_permalink( $cart_item );
-        // Anything related to $product, check $product tutorial
-        $meta = wc_get_formatted_cart_item_data( $cart_item );
-       
-        ?>
-                        {
-                            'name': '<?php echo $product -> get_name()?>',                  
-                            'id': '<?php echo $product -> get_id()?>',
-                            'price': '<?php echo $product -> get_price()?>',
-                            'brand': '<?php echo  $product->get_attribute('pa_brands')?>	',
-                                        'category': '<?php $terms = get_the_terms( $product_id, 'product_cat' );
-                                        foreach ($terms as $term) {
-                                            $product_cat_id = $term->term_id;
-                                            
-                                            echo get_the_category_by_ID($product_cat_id).",";
-                                         
-                                            break;
-                                        } ?>',
-                            'variant': 'none',
-                            'quantity': '<?php echo $quantity; ?>'  
-                            },
-
-
-                            <?php
-                  }    
-                           
-                    ?>
-                        ]
-                    }
-                    }
-                        }
-                })
-        })
-        }
-        </script>	
+        
+        <a class="close" href="">(close)</a>
+        <?php wp_nonce_field( 'ajax-login-nonce', 'security' ); ?>
+    </form>

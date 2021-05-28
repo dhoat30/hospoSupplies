@@ -9,9 +9,7 @@
  */
 require get_theme_file_path('/inc/woocommerce.php');
 
-require get_theme_file_path('/inc/buddypress-design-boards.php');
 
-require get_theme_file_path('/inc/boards-route.php');
 require get_theme_file_path('/inc/custom-post-type.php');
 
 require get_theme_file_path('/inc/nav-registeration.php');
@@ -30,9 +28,9 @@ require get_theme_file_path('/inc/nav-registeration.php');
       wp_enqueue_script('main', 'http://localhost:3000/bundled.js',  array( 'jquery' ), '1.0', true);
     } else {
       wp_enqueue_script('our-vendors-js', get_theme_file_uri('/bundled-assets/vendors~scripts.aebecbb789db7969773b.js'),  array( 'jquery' ), '1.0', true);
-      wp_enqueue_script('main', get_theme_file_uri('/bundled-assets/scripts.e59eeab0e4e01eda25a7.js'), NULL, '1.0', true);
-      wp_enqueue_style('our-main-styles', get_theme_file_uri('/bundled-assets/styles.e59eeab0e4e01eda25a7.css'));      
-      wp_enqueue_style('our-vendor-styles', get_theme_file_uri('/bundled-assets/styles.e59eeab0e4e01eda25a7.css'));
+      wp_enqueue_script('main', get_theme_file_uri('/bundled-assets/scripts.b7b6b8a5eca781c64a90.js'), NULL, '1.0', true);
+      wp_enqueue_style('our-main-styles', get_theme_file_uri('/bundled-assets/styles.b7b6b8a5eca781c64a90.css'));      
+      wp_enqueue_style('our-vendor-styles', get_theme_file_uri('/bundled-assets/styles.aebecbb789db7969773b.css'));
 
     }
     wp_localize_script("main", "inspiryData", array(
@@ -67,155 +65,9 @@ function mat_widget_areas() {
 //custom post register
 
 add_theme_support("post-thumbnails");
-function register_custom_type(){ 
-   register_post_type("boards", array(
-     'show_in_rest' => true, 
-      'has_archive' => true,
-      "supports" => array("title", "page-attributes", 'editor'), 
-      "public" => true, 
-      "show_ui" => true, 
-      "hierarchical" => true,
-      "labels" => array(
-         "name" => "Boards", 
-         "add_new_item" => "Add New Board", 
-         "edit_item" => "Edit Board", 
-         "all_items" => "All Boards", 
-         "singular_name" => "Board"
-      ), 
-      "menu_icon" => "dashicons-heart"
-      
-   )
-   ); 
-}
-
-add_action("init", "register_custom_type"); 
-
- //make private page parent/child
- add_filter("page_attributes_dropdown_pages_args", "my_attributes_dropdown_pages_args", 1, 1);
-
-function my_attributes_dropdown_pages_args($dropdown_args) {
-
-    $dropdown_args["post_status"] = array("publish","draft", "private");
-
-    return $dropdown_args;
-}
 
 
-// remove "Private: " from titles
-function remove_private_prefix($title) {
-	$title = str_replace("Private: ", "", $title);
-	return $title;
-}
-add_filter("the_title", "remove_private_prefix");
 
-//facet wp
-function fwp_archive_per_page( $query ) {
-   if ( is_tax( 'category' ) ) {
-       $query->set( 'posts_per_page', 20 );
-   }
-}
-add_filter( 'pre_get_posts', 'fwp_archive_per_page' );
-
-
-function fwp_home_custom_query( $query ) {
-    if ( $query->is_home() && $query->is_main_query() ) {
-        $query->set( 'post_type', [ 'post', 'product' ] );
-        $query->set( 'orderby', 'title' );
-        $query->set( 'order', 'ASC' );
-    }
-}
-add_filter( 'pre_get_posts', 'fwp_home_custom_query' );
-
-//navbar
-class CSS_Menu_Walker extends Walker {
-
-	var $db_fields = array('parent' => 'menu_item_parent', 'id' => 'db_id');
-	
-	function start_lvl(&$output, $depth = 0, $args = array()) {
-		$indent = str_repeat("\t", $depth);
-		$output .= "\n$indent<ul>\n";
-	}
-	
-	function end_lvl(&$output, $depth = 0, $args = array()) {
-		$indent = str_repeat("\t", $depth);
-		$output .= "$indent</ul>\n";
-	}
-	
-	function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
-	
-		global $wp_query;
-		$indent = ($depth) ? str_repeat("\t", $depth) : '';
-		$class_names = $value = '';
-		$classes = empty($item->classes) ? array() : (array) $item->classes;
-		
-		/* Add active class */
-		if (in_array('current-menu-item', $classes)) {
-			$classes[] = 'active';
-			unset($classes['current-menu-item']);
-		}
-		
-		/* Check for children */
-		$children = get_posts(array('post_type' => 'nav_menu_item', 'nopaging' => true, 'numberposts' => 1, 'meta_key' => '_menu_item_menu_item_parent', 'meta_value' => $item->ID));
-		if (!empty($children)) {
-			$classes[] = 'has-sub';
-		}
-		
-		$class_names = join(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item, $args));
-		$class_names = $class_names ? ' class="' . esc_attr($class_names) . '"' : '';
-		
-		$id = apply_filters('nav_menu_item_id', 'menu-item-'. $item->ID, $item, $args);
-		$id = $id ? ' id="' . esc_attr($id) . '"' : '';
-		
-		$output .= $indent . '<li' . $id . $value . $class_names .'>';
-		
-		$attributes  = ! empty($item->attr_title) ? ' title="'  . esc_attr($item->attr_title) .'"' : '';
-		$attributes .= ! empty($item->target)     ? ' target="' . esc_attr($item->target    ) .'"' : '';
-		$attributes .= ! empty($item->xfn)        ? ' rel="'    . esc_attr($item->xfn       ) .'"' : '';
-		$attributes .= ! empty($item->url)        ? ' href="'   . esc_attr($item->url       ) .'"' : '';
-		
-		$item_output = $args->before;
-		$item_output .= '<a'. $attributes .'><span>';
-		$item_output .= $args->link_before . apply_filters('the_title', $item->title, $item->ID) . $args->link_after;
-		$item_output .= '</span></a>';
-		$item_output .= $args->after;
-		
-		$output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
-	}
-	
-	function end_el(&$output, $item, $depth = 0, $args = array()) {
-		$output .= "</li>\n";
-	}
-}
-
-//upload images 
-
-function handle_my_file_upload() {
- 
-
-  // will return the attachment id of the image in the media library
-  $attachment_id = media_handle_upload('my_file_field', 0);
-
-  // test if upload succeeded
-  if (is_wp_error($attachment_id)) {
-      http_response_code(400);
-      echo 'Failed to upload file.';
-      return 'failed to upload file';
-  }
-  else {
-      http_response_code(200);
-      echo $attachment_id;
-      return 'saved a file';
-  }
-
-  // done!
-  die();
-}
-
-// allow uploads from users that are logged in
-add_action('wp_ajax_my_file_upload', 'handle_my_file_upload');
-
-// allow uploads from guests
-//add_action('wp_ajax_nopriv_my_file_upload', 'handle_my_file_upload');
 
 
 
@@ -231,34 +83,6 @@ EOT;
   return $html;
 }
 add_filter( 'style_loader_tag', 'add_rel_preload', 10, 4 );
-
-//redirect after login 
-/**
-* Redirect users to custom URL based on their role after login
-*
-* @param string $redirect
-* @param object $user
-* @return string
-*/
-function wc_custom_user_redirect( $redirect, $user ) {
-  // Get the first of all the roles assigned to the user
-  $role = $user->roles[0];
-  $dashboard = admin_url();
-  $myaccount = get_permalink( wc_get_page_id( 'shop' ) );
-  if( $role == 'administrator' ) {
-    //Redirect administrators to the dashboard
-    $redirect = '/';
-  }  elseif ( $role == 'customer' || $role == 'subscriber' ) {
-    //Redirect customers and subscribers to the "My Account" page
-    $redirect = '/';
-  } else {
-    //Redirect any other role to the previous visited page or, if not available, to the home
-    $redirect = wp_get_referer() ? wp_get_referer() : home_url();
-  }
-  return $redirect;
-}
-add_filter( 'woocommerce_login_redirect', 'wc_custom_user_redirect', 10, 2 );
-
 
 //yoast seo- add description if it doesn't exist 
 
@@ -474,4 +298,44 @@ function remove_item_from_cart() {
     add_action('wp_ajax_remove_item_from_cart', 'remove_item_from_cart');
     add_action('wp_ajax_nopriv_remove_item_from_cart', 'remove_item_from_cart');
 
-  
+//   ajax login 
+function ajax_login_init(){
+
+    wp_register_script('ajax-login-script', get_template_directory_uri() . '/ajax-login-script.js', array('jquery') ); 
+    wp_enqueue_script('ajax-login-script');
+
+    wp_localize_script( 'ajax-login-script', 'ajax_login_object', array( 
+        'ajaxurl' => admin_url( 'admin-ajax.php' ),
+        'redirecturl' => home_url(),
+        'loadingmessage' => __('Sending user info, please wait...')
+    ));
+
+    // Enable the user with no privileges to run ajax_login() in AJAX
+    add_action( 'wp_ajax_nopriv_ajaxlogin', 'ajax_login' );
+}
+
+// Execute the action only if the user isn't logged in
+if (!is_user_logged_in()) {
+    add_action('init', 'ajax_login_init');
+}
+
+function ajax_login(){
+
+    // First check the nonce, if it fails the function will break
+    check_ajax_referer( 'ajax-login-nonce', 'security' );
+
+    // Nonce is checked, get the POST data and sign user on
+    $info = array();
+    $info['user_login'] = $_POST['username'];
+    $info['user_password'] = $_POST['password'];
+    $info['remember'] = true;
+
+    $user_signon = wp_signon( $info, false );
+    if ( is_wp_error($user_signon) ){
+        echo json_encode(array('loggedin'=>false, 'message'=>__('Wrong username or password.')));
+    } else {
+        echo json_encode(array('loggedin'=>true, 'message'=>__('Login successful, redirecting...')));
+    }
+
+    die();
+}

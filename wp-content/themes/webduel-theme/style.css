@@ -16,23 +16,14 @@
 @import "css/product-page.css";
 @import "css/product-page-custom-styling.css";
 @import "css/related-product.css";
-@import "css/specs.css";
-@import "css/laybuy.css";
-@import "css/warrrenty.css";
 @import "css/product-archive.css";
-@import "css/consultation.css";
 @import "css/header.css";
 @import "css/navbar/top-nav.css";
 @import "css/footer.css";
 @import "css/front-page.css";
-@import "css/our-services.css";
-@import "css/blog.css";
-@import "css/shop-by-brand.css";
-@import "css/free-e-book.css";
-@import "css/about-us.css";
+
 @import "css/general.css";
 @import "css/loader.css";
-@import "css/account.css";
 @import "css/cart.css";
 @import "css/login-page.css";
 @import "css/wishlist.css";
@@ -41,15 +32,11 @@
 
 /*pages */
 
-@import "css/page.css";
-
 /*slider */
 
 @import "css/slider.css";
 
 /*footer*/
-
-@import "css/contact.css";
 
 * {
   box-sizing: border-box;
@@ -546,6 +533,26 @@ textarea::placeholder {
   text-decoration: underline;
 }
 /*woocommerce button*/
+.woocommerce-Button {
+  display: block;
+  color: #fff !important;
+  font-family: sans-serif;
+  width: 100% !important;
+  padding: 10px 20px !important;
+  border-radius: 0;
+  font-weight: 600 !important;
+  line-height: 1.6;
+  font-size: 16px;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  box-shadow: none;
+  opacity: 1;
+  transition: all 0.15s ease-in-out !important;
+  background-color: #ee6869 !important;
+  letter-spacing: 1px !important;
+  font-family: "Roboto", sans-serif !important;
+}
 .woo-btn-dk-red {
   display: block;
   color: #fff !important;
