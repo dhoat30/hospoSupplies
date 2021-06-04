@@ -28,9 +28,9 @@ require get_theme_file_path('/inc/nav-registeration.php');
       wp_enqueue_script('main', 'http://localhost:3000/bundled.js',  array( 'jquery' ), '1.0', true);
     } else {
       wp_enqueue_script('our-vendors-js', get_theme_file_uri('/bundled-assets/vendors~scripts.aebecbb789db7969773b.js'),  array( 'jquery' ), '1.0', true);
-      wp_enqueue_script('main', get_theme_file_uri('/bundled-assets/scripts.b7b6b8a5eca781c64a90.js'), NULL, '1.0', true);
-      wp_enqueue_style('our-main-styles', get_theme_file_uri('/bundled-assets/styles.b7b6b8a5eca781c64a90.css'));      
-      wp_enqueue_style('our-vendor-styles', get_theme_file_uri('/bundled-assets/styles.aebecbb789db7969773b.css'));
+      wp_enqueue_script('main', get_theme_file_uri('/bundled-assets/scripts.cd7932315ca1a61cfed1.js'), NULL, '1.0', true);
+      wp_enqueue_style('our-main-styles', get_theme_file_uri('/bundled-assets/styles.cd7932315ca1a61cfed1.css'));      
+      wp_enqueue_style('our-vendor-styles', get_theme_file_uri('/bundled-assets/styles.cd7932315ca1a61cfed1.css'));
 
     }
     wp_localize_script("main", "inspiryData", array(
@@ -142,7 +142,7 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
   ob_start();
 
   ?>
-    <div class="cart-box">
+     <div class="cart-box">
                 <div class="flex-card">
                         <?php
 
@@ -159,35 +159,8 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
                             ?>
                     <!-- front end cart items cards -->
                     <div class="product-card">
-                        <?php 
-
-                                // condition to check if the product is simple
-                        if($product->name == "Free Sample"){
-                                    // pulling information of an original product in a form of an objec†
-                        $originalProduct = wc_get_product( $cart_item["free_sample"] );
                         
-                        ?>
-                        <a href="<?php echo get_the_permalink($originalProduct->get_id()); ?>" class="rm-txt-dec">
-                            
-                            <div class="img-container">
-                                <img src="<?php echo wp_get_attachment_image_url( $originalProduct->image_id, 'woocommerce_thumbnail' );?>" alt="<?php echo $originalProduct->get_name()?>">
-                            </div>
-                            <div class="title-container">
-                                    <h5 class="font-s-regular regular"> <?php echo $quantity;?> X  Free Sample (<?php echo $originalProduct->get_name(); 
-                                    ?> )
-                                    </h5>
-                            </div>
-                            
-                            <div class="price-container">
-                            <h6 class="font-s-regular roboto-font bold">$<?php echo number_format($product->price * $quantity) ?></h6>
-                            </div>
-                            <i class="fal fa-times remove-cart-item-btn" data-productID="<?php echo $product_id;?>"></i>
-                        </a>
-
-                        <?php
-                        }
-                        else{
-                            ?>
+                        
                             <a href="<?php echo $link?>" class="rm-txt-dec">
                                 
                                 <div class="img-container">
@@ -200,14 +173,12 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
                                 </div>
                                 
                                 <div class="price-container">
-                                <h6 class="font-s-regular roboto-font bold">$<?php echo number_format($product->price * $quantity); ?></h6>
+                                <h6 class="font-s-regular roboto-font bold">$<?php echo number_format($product->price * $quantity, 2); ?></h6>
                                 </div>
                                 
-                                <i class="fal fa-times remove-cart-item-btn" data-productID="<?php echo $product_id;?>"></i>
+                                <!-- <i class="fal fa-times remove-cart-item-btn" data-productID="<?php echo $product_id;?>"></i> -->
                             </a>
-                            <?php
-                        }
-                        ?>
+                            
                     </div>
                 
                     <?php
@@ -221,8 +192,8 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
                         
                         <div class="total roboto-font">
                             Total: $<?php 
-                            $totalAmount = str_replace(".00", "", (string)number_format (WC()->cart->total, 2, ".", ""));
-                            echo number_format($totalAmount); ?>
+                            $totalAmount = WC()->cart->total;
+                            echo number_format($totalAmount, 2); ?>
                         </div>
                     </div>
                     <div class="cont-shopping">
@@ -233,6 +204,7 @@ function woocommerce_header_add_to_cart_fragment( $fragments ) {
                     </div>
                 </div>
             </div>
+			
  <?php
   $fragments['.cart-box'] = ob_get_clean();
   return $fragments;

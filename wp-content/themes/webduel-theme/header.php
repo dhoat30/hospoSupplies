@@ -156,7 +156,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       
         <div class="cart-popup-container box-shadow">
             
-        <div class="cart-box">
+            <div class="cart-box">
                 <div class="flex-card">
                         <?php
 
@@ -173,35 +173,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                             ?>
                     <!-- front end cart items cards -->
                     <div class="product-card">
-                        <?php 
-
-                                // condition to check if the product is simple
-                        if($product->name == "Free Sample"){
-                                    // pulling information of an original product in a form of an objec†
-                        $originalProduct = wc_get_product( $cart_item["free_sample"] );
                         
-                        ?>
-                        <a href="<?php echo get_the_permalink($originalProduct->get_id()); ?>" class="rm-txt-dec">
-                            
-                            <div class="img-container">
-                                <img src="<?php echo wp_get_attachment_image_url( $originalProduct->image_id, 'woocommerce_thumbnail' );?>" alt="<?php echo $originalProduct->get_name()?>">
-                            </div>
-                            <div class="title-container">
-                                    <h5 class="font-s-regular regular"> <?php echo $quantity;?> X  Free Sample (<?php echo $originalProduct->get_name(); 
-                                    ?> )
-                                    </h5>
-                            </div>
-                            
-                            <div class="price-container">
-                            <h6 class="font-s-regular roboto-font bold">$<?php echo number_format($product->price * $quantity) ?></h6>
-                            </div>
-                            <i class="fal fa-times remove-cart-item-btn" data-productID="<?php echo $product_id;?>"></i>
-                        </a>
-
-                        <?php
-                        }
-                        else{
-                            ?>
+                        
                             <a href="<?php echo $link?>" class="rm-txt-dec">
                                 
                                 <div class="img-container">
@@ -214,14 +187,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                                 </div>
                                 
                                 <div class="price-container">
-                                <h6 class="font-s-regular roboto-font bold">$<?php echo number_format($product->price * $quantity); ?></h6>
+                                <h6 class="font-s-regular roboto-font bold">$<?php echo number_format($product->price * $quantity, 2); ?></h6>
                                 </div>
                                 
-                                <i class="fal fa-times remove-cart-item-btn" data-productID="<?php echo $product_id;?>"></i>
+                                <!-- <i class="fal fa-times remove-cart-item-btn" data-productID="<?php echo $product_id;?>"></i> -->
                             </a>
-                            <?php
-                        }
-                        ?>
+                            
                     </div>
                 
                     <?php
@@ -235,8 +206,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                         
                         <div class="total roboto-font">
                             Total: $<?php 
-                            $totalAmount = str_replace(".00", "", (string)number_format (WC()->cart->total, 2, ".", ""));
-                            echo number_format($totalAmount); ?>
+                            $totalAmount = WC()->cart->total;
+                            echo number_format($totalAmount, 2); ?>
                         </div>
                     </div>
                     <div class="cont-shopping">
